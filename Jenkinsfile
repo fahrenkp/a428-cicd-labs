@@ -6,14 +6,24 @@ pipeline {
         }
     }
     stages {
+        stage('Checkout') {
+            steps {
+                sh 'rm -rf a428-cicd-labs'
+                sh 'git clone -b react-app https://github.com/fahrenkp/a428-cicd-labs.git'
+            }
+        }
         stage('Build') {
             steps {
-                sh 'npm install'
+                dir('a428-cicd-labs') { // Masuk ke folder hasil clone
+                    sh 'npm install'
+                }
             }
         }
         stage('Test') { 
             steps {
-                sh './jenkins/scripts/test.sh' 
+                dir('a428-cicd-labs') { // Masuk ke folder hasil clone
+                    sh './jenkins/scripts/test.sh' 
+                }
             }
         }
     }
