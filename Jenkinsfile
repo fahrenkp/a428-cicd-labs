@@ -5,15 +5,15 @@ pipeline {
             args '-p 3000:3000' 
         }
     }
-    stages {
-        stage('Build') { 
-            steps {
+    stage('Build') {
+        steps {
+            dir('a428-cicd-labs') {
                 sh 'npm install'
             }
         }
-    }
+    }   
 }
-//Scripct Yang Bisa dibuaild
+//Scripct Yang Bisa dibuild
 
 // pipeline {
 //     agent any
